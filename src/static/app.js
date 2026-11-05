@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let allActivities = {};
   let currentFilter = "all";
   let currentDifficulty = "all";
-  let searchQuery = "";
+  let searchQuery =
+    new URLSearchParams(window.location.search).get("activity") || "";
+  searchInput.value = searchQuery;
   let currentDay = "";
   let currentTimeRange = "";
 
@@ -597,6 +599,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    activityCard.appendChild(
+      window.activitySharing.createControls(name, details.description, formattedSchedule)
+    );
     activitiesList.appendChild(activityCard);
   }
 
